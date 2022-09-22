@@ -15,7 +15,6 @@ package main
 
 import (
   "github.com/rosbit/color-log"
-  "fmt"
 )
 
 func main() {
