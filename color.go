@@ -3,6 +3,7 @@ package clog
 import (
 	"github.com/gookit/color"
 	"log"
+	"io"
 	"fmt"
 )
 
@@ -30,6 +31,10 @@ type ColorLogger struct {
 	l *log.Logger
 }
 
+func SetOutput(w io.Writer) {
+	defaultLog.l.SetOutput(w)
+}
+
 func Info(args ...interface{}) {
 	defaultLog.log(l_info, args...)
 }
@@ -53,6 +58,10 @@ func Errorf(format string, args ...interface{}) {
 
 func NewColorLogger(l *log.Logger) *ColorLogger {
 	return &ColorLogger{l:l}
+}
+
+func (cl *ColorLogger) SetOutput(w io.Writer) {
+	cl.l.SetOutput(w)
 }
 
 func (cl *ColorLogger) Info(args ...interface{}) {
